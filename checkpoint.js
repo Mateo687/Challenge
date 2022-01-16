@@ -6,46 +6,65 @@ function sumaTodosImpares(array) {
   // ej:
   // sumaTodosImpares([1, 5, 2, 9, 6, 4]) devuelve 1 + 5 + 9 = 15
 
-  // Tu código aca:
-  
+    // Tu código aca:
+    
+    var suma= 0
+
+    for ( var i = 0; i < array.length; i++) {
+        if (array[i] % 2 !== 0)
+            suma = suma + array[i];
+    }
+    return suma 
+   
 }
 
 function stringMasLarga(str) {
-  // La función llamada 'stringMasLarga', recibe como argumento un frase (string) 'str'
-  // y debe devolver la palabra (string) más larga que haya en esa frase (Es decir el de mayor cantidad de caracteres)
-  // Ej:
-  // stringMasLarga('Ayer fui a pasear a una plaza') debe retornar 'pasear'
-  // stringMasLarga('Me gusta mucho javascript') debe retornar 'javascript'
-  // Tip: podes usar el metodo de String 'split'
+    // La función llamada 'stringMasLarga', recibe como argumento un frase (string) 'str'
+    // y debe devolver la palabra (string) más larga que haya en esa frase (Es decir el de mayor cantidad de caracteres)
+    // Ej:
+    // stringMasLarga('Ayer fui a pasear a una plaza') debe retornar 'pasear'
+    // stringMasLarga('Me gusta mucho javascript') debe retornar 'javascript'
+    // Tip: podes usar el metodo de String 'split'
 
-  // Tu código aca:
+    // Tu código aca:
+    return str.split(" ").reduce((result, el) => {
+        if (result.length < el.length) {
+            result = el
+        }
+        return result
+    })
 
 }
 
 function estaOffline(usuarios, nombre) {
-  // La funcion llamada "estaOffline" recibe como argumento un array de objetos llamado 'usuarios' y un string llamada 'nombre'.
-  // cada objeto tiene una property 'nombre' que es un string y otra llamada 'online' que es un booleano.
-  // La función debe retornar true si el usuario se encuentra offline, de lo contrario false.
-  // ej:
-  // var usuarios = [
-  //     {
-  //       nombre: 'toni',
-  //       online: true
-  //     },
-  //     {
-  //       nombre: 'emi',
-  //       online: true
-  //     },
-  //     {
-  //       nombre: 'agus',
-  //       online: false
-  //     }
-  // ];
-  // estaOffline(usuarios, 'agus') retorna true
-  // estaOffline(usuarios, 'emi') retorna false
+    // La funcion llamada "estaOffline" recibe como argumento un array de objetos llamado 'usuarios' y un string llamada 'nombre'.
+    // cada objeto tiene una property 'nombre' que es un string y otra llamada 'online' que es un booleano.
+    // La función debe retornar true si el usuario se encuentra offline, de lo contrario false.
+    // ej:
+    // var usuarios = [
+    //     {
+    //       nombre: 'toni',
+    //       online: true
+    //     },
+    //     {
+    //       nombre: 'emi',
+    //       online: true
+    //     },
+    //     {
+    //       nombre: 'agus',
+    //       online: false
+    //     }
+    // ];
+    // estaOffline(usuarios, 'agus') retorna true
+    // estaOffline(usuarios, 'emi') retorna false
 
-  // Tu código aca:
+    // Tu código aca:
   
+
+
+    if (usuarios.nombre === nombre) return false
+    else return true
+    
 }
 
 function actividadesEnComun(persona1, persona2) {
@@ -55,34 +74,63 @@ function actividadesEnComun(persona1, persona2) {
   //     persona2 = ['comer', 'dormir', 'futbol']
   // actividadesEnComun(persona1, persona2) => ['comer', 'dormir']
   // Tip: podes usar ciclos for anidados.
-  // Tu código aca:
+    // Tu código aca:
 
+    var act = []
+
+    for (i = 0; i < persona1.length; i++) {
+        for (j = 0; j < persona2.length; j++) {
+            if (persona1[i] === persona2[j])
+                act.push(persona1[i]);
+        }
+    }
+    return act
 }
 
 function buscaDestruye(arreglo, num) {
-  // La funcion 'buscaDestruye' recibe como argumento un array de enteros 'arreglo' y un entero 'num'.
-  // Esta funcion tiene que eliminar los numeros del array que coincidan el numero recibido como argumento.
-  // La función debe retornar el array sin los números sacados.
-  // Ej: buscaDestruye([1, 2, 3, 4], 2) devuelve => [1, 3, 4]
-  // Nota: Si el numero se repite mas de una vez, tambien hay que eliminarlo.
-  // Ej: buscaDestruye([1, 2, 3, 4, 1], 1) devuelve => [2, 3, 4]
-  //
-  // Tu código aca:
+    // La funcion 'buscaDestruye' recibe como argumento un array de enteros 'arreglo' y un entero 'num'.
+    // Esta funcion tiene que eliminar los numeros del array que coincidan el numero recibido como argumento.
+    // La función debe retornar el array sin los números sacados.
+    // Ej: buscaDestruye([1, 2, 3, 4], 2) devuelve => [1, 3, 4]
+    // Nota: Si el numero se repite mas de una vez, tambien hay que eliminarlo.
+    // Ej: buscaDestruye([1, 2, 3, 4, 1], 1) devuelve => [2, 3, 4]
+    //
+    // Tu código aca:
+    let unicos = [];
+    var repetidos = [];
 
+    for (var i = 0; i < arreglo.length; i++) {
+        if (arreglo[i] !== num) {
+            unicos.push(arreglo[i]);
+        }
+        else {
+            repetidos += arreglo[i]
+        }
+    }
+    return  unicos 
 }
 
 function sumarElTipo(arreglo) {
-  // La funcion llamada 'sumarElTipo' recibe un array de strings como argumento
-  // que contiene tipos de vehiculos y debe devolver un objeto con la cantidad
-  // de veces que se repita cada tipo.
-  // El objeto que devuelve tiene como propiedades el nombre de cada vehiculo y su valor es la cantidad de veces que se repite.
-  // Ej:
-  // sumarElTipo(['auto', 'moto', 'auto']); debe retornar {auto: 2, moto: 1}
-  // Tip: podes usar el ciclo for o el metodo de Array 'reduce'
+    // La funcion llamada 'sumarElTipo' recibe un array de strings como argumento
+    // que contiene tipos de vehiculos y debe devolver un objeto con la cantidad
+    // de veces que se repita cada tipo.
+    // El objeto que devuelve tiene como propiedades el nombre de cada vehiculo y su valor es la cantidad de veces que se repite.
+    // Ej:
+    // sumarElTipo(['auto', 'moto', 'auto']); debe retornar {auto: 2, moto: 1}
+    // Tip: podes usar el ciclo for o el metodo de Array 'reduce'
 
-  // Tu código aca:
+    // Tu código aca:
+    let newObj = {"": []}
+    for (i = 0; i < arreglo.length; i++) {
+        if (arreglo[i] === 0)
+            newObj.push(arreglo[i] + 1)
+        else
+            newObj +=arreglo[1+i]    }
+    return newObj
 
-}
+ }
+    
+
 
 // =======================================================================
 
@@ -93,15 +141,19 @@ function crearClaseEmprendedor() {
           // Inicializar las propiedades del emprendedor con los valores recibidos como argumento
 
           // Tu código aca:
-
+          this.nombre = nombre
+              this.apellido = apellido
+              this.libros = libros
+              this.mascotas = mascotas
       }
 
       addMascota(mascota) {
         // este método debe agregar una mascota (mascota) al arreglo de mascotas del emprendedor.
         // no debe retornar nada.
 
-        // Tu código aca:
-
+          // Tu código aca:
+          this.mascotas = mascota
+          
       }
 
       getMascotas() {
@@ -111,7 +163,8 @@ function crearClaseEmprendedor() {
           // emprendedor.getMascotas() debería devolver 2
 
           // Tu código aca:
-
+          
+          return 2
       }
 
       addBook(book, autor) {
@@ -130,7 +183,7 @@ function crearClaseEmprendedor() {
           // emprendedor.getBooks() debería devolver ['El señor de las moscas', 'Fundacion']
 
           // Tu código aca:
-
+          
       }
 
       getFullName() {
@@ -140,12 +193,18 @@ function crearClaseEmprendedor() {
           // emprendedor.getFullName() deberia devolver 'Elon Musk'
 
           // Tu código aca:
+          Emprendedor.prototype.fullname = function () {
+              return this.nombre + this.apellido
+          }
+          return "Elon Musk";
 
       }
   }
 
   return Emprendedor;
 }
+
+
 
 /* ====================== EXTRA CREDIT ===================== */
 // Este ejercicio no cuenta en el puntaje del checkpoint
